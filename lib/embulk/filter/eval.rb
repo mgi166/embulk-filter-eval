@@ -14,9 +14,7 @@ module Embulk
       end
 
       def init
-        # initialization code:
-        @property1 = task["property1"]
-        @property2 = task["property2"]
+        @table = task["eval_columns"]
       end
 
       def close
