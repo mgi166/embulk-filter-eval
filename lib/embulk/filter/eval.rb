@@ -21,9 +21,27 @@ module Embulk
       end
 
       def add(page)
-        # filtering code:
         page.each do |record|
-          page_builder.add(record)
+          begin
+            record = hash_record(record)
+
+            result = {}
+
+            record.each do |key, value|
+              source = @table.find do |t|
+                t.key?(key)
+              end
+
+              if source && source = source[key]
+                result[key] = eval(source)
+              else
+                result[key] = value
+              end
+            end
+
+            page_builder.add(result.values)
+          rescue
+          end
         end
       end
 
