@@ -10,7 +10,7 @@ module Embulk
           "eval_columns" => config.param("eval_columns", :array)
         }
 
-        yield(task, out_columns)
+        yield(task, in_schema)
       end
 
       def init
