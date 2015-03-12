@@ -8,16 +8,17 @@ TODO: Write short description here and embulk-filter-eval.gemspec file.
 
 ## Configuration
 
-- **property1**: description (string, required)
-- **property2**: description (integer, default: default-value)
+- **eval_columns**: (array, required)
 
 ## Example
 
 ```yaml
 filters:
   - type: eval
-    property1: example1
-    property2: example2
+    eval_columns:
+      - id: value + 1
+      - account:
+      - comment: value + 'Eval is Evil!'
 ```
 
 
