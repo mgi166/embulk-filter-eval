@@ -7,7 +7,7 @@ module Embulk
       def self.transaction(config, in_schema, &control)
         # configuration code:
         task = {
-          "eval_columns" => config.param("eval_columns", :array)
+          "eval_columns" => config.param("eval_columns", :array, default: [])
         }
 
         yield(task, in_schema)
