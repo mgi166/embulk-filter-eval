@@ -48,6 +48,10 @@ module Embulk
       def finish
         page_builder.finish
       end
+
+      def hash_record(record)
+        Hash[in_schema.names.zip(record)]
+      end
     end
 
   end
