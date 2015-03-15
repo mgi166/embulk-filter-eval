@@ -4,6 +4,8 @@ module Embulk
     class EvalFilterPlugin < FilterPlugin
       Plugin.register_filter("eval", self)
 
+      class NotFoundOutSchema < StandardError; end;
+
       def self.transaction(config, in_schema, &control)
         # configuration code:
         task = {
@@ -19,6 +21,11 @@ module Embulk
       def self.out_schema(out_schema, in_schema)
         schema = out_schema.map.with_index do |name, i|
           sch = in_schema.find { |sch| sch.name == name }
+
+          unless sch
+            raise NotFoundOutSchema, "Not found output schema: `#{name}'"
+          end
+
           Embulk::Column.new(index: i, name: sch.name, type: sch.type, format: sch.format)
         end
         schema.empty? ? in_schema : schema
