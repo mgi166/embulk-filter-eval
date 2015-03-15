@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.description   = "Eval"
   spec.email         = ["skskoari@gmail.com"]
   spec.licenses      = ["MIT"]
-  # TODO set this: spec.homepage      = "https://github.com/skskoari/embulk-filter-eval"
+  spec.homepage      = "https://github.com/mgi166/embulk-filter-eval"
 
   spec.files         = `git ls-files`.split("\n") + Dir["classpath/*.jar"]
   spec.test_files    = spec.files.grep(%r{^(test|spec)/})
