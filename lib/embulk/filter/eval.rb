@@ -5,6 +5,7 @@ module Embulk
       Plugin.register_filter("eval", self)
 
       class NotFoundOutColumn < StandardError; end;
+      VERSION = '0.1.0'
 
       def self.transaction(config, in_schema, &control)
         # configuration code:
