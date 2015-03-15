@@ -43,7 +43,7 @@ filters:
       - id: value + 1
       - account:
       - time: Time.now
-      - comment: "'Evil is Evil! ' + value"
+      - comment: "'Eval is Evil! ' + value"
 ```
 
 `value` is an element of the column.  
@@ -53,10 +53,10 @@ Such as sample, output will be this.
 +---------+--------------+-----------------------------+-------------------------+------------------------------------------+
 | id:long | account:long |              time:timestamp |      purchase:timestamp |                           comment:string |
 +---------+--------------+-----------------------------+-------------------------+------------------------------------------+
-|       2 |       32,864 | 2015-03-13 13:20:18.753 UTC | 2015-01-27 00:00:00 UTC |                     Evil is Evil! embulk |
-|       3 |       14,824 | 2015-03-13 13:20:18.754 UTC | 2015-01-27 00:00:00 UTC |               Evil is Evil! embulk jruby |
-|       4 |       27,559 | 2015-03-13 13:20:18.755 UTC | 2015-01-28 00:00:00 UTC | Evil is Evil! Embulk "csv" parser plugin |
-|       5 |       11,270 | 2015-03-13 13:20:18.756 UTC | 2015-01-29 00:00:00 UTC |                       Evil is Evil! NULL |
+|       2 |       32,864 | 2015-03-13 13:20:18.753 UTC | 2015-01-27 00:00:00 UTC |                     Eval is Evil! embulk |
+|       3 |       14,824 | 2015-03-13 13:20:18.754 UTC | 2015-01-27 00:00:00 UTC |               Eval is Evil! embulk jruby |
+|       4 |       27,559 | 2015-03-13 13:20:18.755 UTC | 2015-01-28 00:00:00 UTC | Eval is Evil! Embulk "csv" parser plugin |
+|       5 |       11,270 | 2015-03-13 13:20:18.756 UTC | 2015-01-29 00:00:00 UTC |                       Eval is Evil! NULL |
 +---------+--------------+-----------------------------+-------------------------+------------------------------------------+
 ```
 
