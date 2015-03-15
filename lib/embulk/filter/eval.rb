@@ -4,22 +4,22 @@ module Embulk
     class EvalFilterPlugin < FilterPlugin
       Plugin.register_filter("eval", self)
 
-      class NotFoundOutSchema < StandardError; end;
+      class NotFoundOutColumn < StandardError; end;
 
       def self.transaction(config, in_schema, &control)
         # configuration code:
         task = {
           "eval_columns" => config.param("eval_columns", :array, default: []),
-          "out_schema" => config.param("out_schema", :array, default: [])
+          "out_columns" => config.param("out_columns", :array, default: [])
         }
 
-        out_schema = out_schema(task['out_schema'], in_schema)
+        out_schema = out_schema(task['out_columns'], in_schema)
 
         yield(task, out_schema)
       end
 
-      def self.out_schema(out_schema, in_schema)
-        schema = out_schema.map.with_index do |name, i|
+      def self.out_schema(out_columns, in_schema)
+        schema = out_columns.map.with_index do |name, i|
           sch = in_schema.find { |sch| sch.name == name }
 
           unless sch
