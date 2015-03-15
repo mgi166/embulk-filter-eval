@@ -11,14 +11,17 @@ module Embulk
           "out_schema" => config.param("out_schema", :array, default: [])
         }
 
-        out_schema = config['out_schema'].map.with_index do |name, i|
+        out_schema = out_schema(task['out_schema'], in_schema)
+
+        yield(task, out_schema)
+      end
+
+      def self.out_schema(out_schema, in_schema)
+        schema = out_schema.map.with_index do |name, i|
           sch = in_schema.find { |sch| sch.name == name }
           Embulk::Column.new(index: i, name: sch.name, type: sch.type, format: sch.format)
         end
-
-        out_schema = in_schema if out_schema.empty?
-
-        yield(task, out_schema)
+        schema.empty? ? in_schema : schema
       end
 
       def init
