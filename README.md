@@ -8,8 +8,10 @@ Evaluate the row element by ruby code
 
 ## Configuration
 
-- **eval_columns**: (array)
-- **out_columns**: (array)
+* **eval_columns**: (array)
+   * The ruby code to be evaluated for each element
+* **out_columns**: (array)
+   * The column to be output from the input columns
 
 ## Example
 
@@ -40,7 +42,8 @@ filters:
       - comment: "'Evil is Evil! ' + value"
 ```
 
-so evaluate the value
+`value` is an element of the column.  
+Such as sample, output will be this.
 
 ```
 +---------+--------------+-----------------------------+-------------------------+------------------------------------------+
