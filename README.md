@@ -9,6 +9,7 @@ Evaluate the row element by ruby code
 ## Configuration
 
 - **eval_columns**: (array)
+- **out_columns**: (array)
 
 ## Example
 
