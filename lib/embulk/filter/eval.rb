@@ -7,10 +7,18 @@ module Embulk
       def self.transaction(config, in_schema, &control)
         # configuration code:
         task = {
-          "eval_columns" => config.param("eval_columns", :array, default: [])
+          "eval_columns" => config.param("eval_columns", :array, default: []),
+          "out_schema" => config.param("out_schema", :array, default: [])
         }
 
-        yield(task, in_schema)
+        out_schema = config['out_schema'].map.with_index do |name, i|
+          sch = in_schema.find { |sch| sch.name == name }
+          Embulk::Column.new(index: i, name: sch.name, type: sch.type, format: sch.format)
+        end
+
+        out_schema = in_schema if out_schema.empty?
+
+        yield(task, out_schema)
       end
 
       def init
