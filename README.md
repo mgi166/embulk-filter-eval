@@ -13,6 +13,10 @@ Evaluate the row element by ruby code
 * **out_columns**: (array)
    * The column to be output from the input columns
 
+## install
+
+`$ embulk gem install embulk-filter-eval`
+
 ## Example
 
 ```
